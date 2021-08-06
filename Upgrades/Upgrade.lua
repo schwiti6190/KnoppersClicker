@@ -4,8 +4,9 @@ Upgrade = Class()
 Upgrade.basePrice = 0
 Upgrade.priceModifier = 1
 
-function Upgrade:init(itemHandler)
+function Upgrade:init(upgradeHandler,itemHandler)
 	self.itemHandler = itemHandler
+	self.upgradeHandler = upgradeHandler
 	self.value = 0
 end
 
@@ -14,7 +15,7 @@ function Upgrade:update()
 end
 
 function Upgrade:getText()
-	return string.format("x%d",self:getModifier())
+	return string.format("x%s",GuiUtils.getFormattedMoneyText(self:getModifier()))
 end
 
 function Upgrade:getModifier()
@@ -22,7 +23,11 @@ function Upgrade:getModifier()
 end
 
 function Upgrade:getPrice()
-	return self.basePrice + self.priceModifier * self.value
+	return (self.basePrice + self.priceModifier * self.value)*self.upgradeHandler:getReductionModifier() * self:getBuyAmount()
+end
+
+function Upgrade:getPriceText()
+	return GuiUtils.getFormattedMoneyText(self:getPrice())
 end
 
 function Upgrade:onClick()
@@ -33,7 +38,7 @@ function Upgrade:onClick()
 end
 
 function Upgrade:add()
-	self.value = self.value + 1
+	self.value = self.value + self:getBuyAmount()
 	self.itemHandler:decreaseItemValue(Items.cookie,self:getPrice())
 end
 
@@ -44,4 +49,8 @@ end
 
 function Upgrade:isVisible()
 	return not (self:isDisabled() and self.value == 0)
+end
+
+function Upgrade:getBuyAmount()
+	return self.upgradeHandler:getBuyAmount()
 end

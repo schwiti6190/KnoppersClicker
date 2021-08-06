@@ -53,3 +53,7 @@ function Machine:canInteract()
 	local masterValue = self.itemHandler:getItemValue(Items.master)
 	return masterValue >= self.masterPrice and Item.canInteract(self)
 end
+
+function Machine:getCps()
+	return self:getCookieReward()/self.timer
+end

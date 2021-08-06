@@ -2,6 +2,7 @@
 ---@class Event 
 Event = Class()
 Event.timerLength = 20
+Event.text = "Text is missing!"
 
 function Event:init(eventHandler,itemHandler)
 	self.itemHandler = itemHandler
@@ -14,6 +15,7 @@ end
 
 function Event:update()
 	if self.timer and (self.timer + self.timerLength) < os.clock() then 
+		print("event timer finished")
 		self.timer = nil
 	end
 end
@@ -28,10 +30,6 @@ end
 
 function Event:isVisible()
 	return self:isActive()
-end
-
-function Event:isDisabled()
-	return not self:isActive()
 end
 
 function Event:getText()

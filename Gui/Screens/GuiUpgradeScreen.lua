@@ -24,7 +24,7 @@ GuiUpgradeScreen.data = {
 			callbacks = {
 				disabledCall = "isDisabled",
 				visibleCall = "isVisible",
-				textCall = "getPrice"
+				textCall = "getPriceText"
 			}
 		}
 	},
@@ -49,7 +49,7 @@ GuiUpgradeScreen.data = {
 			callbacks = {
 				disabledCall = "isDisabled",
 				visibleCall = "isVisible",
-				textCall = "getPrice"
+				textCall = "getPriceText"
 			}
 		}
 	},
@@ -74,7 +74,7 @@ GuiUpgradeScreen.data = {
 			callbacks = {
 				disabledCall = "isDisabled",
 				visibleCall = "isVisible",
-				textCall = "getPrice"
+				textCall = "getPriceText"
 			}
 		}
 	},
@@ -99,7 +99,7 @@ GuiUpgradeScreen.data = {
 			callbacks = {
 				disabledCall = "isDisabled",
 				visibleCall = "isVisible",
-				textCall = "getPrice"
+				textCall = "getPriceText"
 			}
 		}
 	},
@@ -124,7 +124,7 @@ GuiUpgradeScreen.data = {
 			callbacks = {
 				disabledCall = "isDisabled",
 				visibleCall = "isVisible",
-				textCall = "getPrice"
+				textCall = "getPriceText"
 			}
 		}
 	},
@@ -133,9 +133,21 @@ GuiUpgradeScreen.data = {
 			class = GuiButtonElement,
 			x = 1,
 			y = 10,
-			label = "back: ",
+			label = "back",
 			callbacks = {
 				onClickCall = "onClickBack"
+			}
+		}
+	},
+	buyAmount = {
+		base = {
+			class = GuiButtonElement,
+			x = 18,
+			y = 10,
+			label = "Buy amount:",
+			callbacks = {
+				onClickCall = "changeBuyAmount",
+				textCall = "getBuyAmount"
 			}
 		}
 	}

@@ -16,10 +16,10 @@ Items = {
 }
 
 
----@class ItemHandler
-ItemHandler = Class()
+---@class ItemHandler : Handler
+ItemHandler = Class(Handler)
 
-ItemHandler.itemData = {
+ItemHandler.elementsData = {
 	cookie = Cookie,
 	baker = Baker,
 	master = Master,
@@ -29,79 +29,63 @@ ItemHandler.itemData = {
 
 
 function ItemHandler:init(cookieClicker,renderer)
-	self.cookieClicker = cookieClicker
-	self.renderer = renderer
 	local screen = renderer:getClickerScreen()
-	self:addItems(screen)
+	self:addElements(screen,self)
+	screen:setCallbackClassToElements({cps = self,buyAmount = self})
+	Handler.init(self,cookieClicker,renderer)
 end
 
-function ItemHandler:addItems(screen)
-	self.items = {}
-	for itemName,class in pairs(self.itemData) do 
-		local item = class(self)
-		self.items[itemName] = item
-	end
-	screen:setCallbackClassToElements(self.items)
-end
-
-function ItemHandler:update()
-	for _,i in pairs(self.items) do 
-		i:update()
-	end
+function ItemHandler:getCps()
+	return string.format("%s/s",GuiUtils.getFormattedMoneyText(self.elements.machine:getCps()))
 end
 
 function ItemHandler:getItem(item)
-	return self.items[item]
+	return self.elements[item]
 end
 
 function ItemHandler:getItemValue(item)
-	return self.items[item]:getValue()
+	return self.elements[item]:getValue()
 end
 
 function ItemHandler:setItemValue(item,value)
-	self.items[item]:setValue(value)
+	self.elements[item]:setValue(value)
 end
 
 function ItemHandler:increaseItemValue(item,value)
-	self.items[item]:increaseValue(value)
+	self.elements[item]:increaseValue(value)
 end
 
 function ItemHandler:decreaseItemValue(item,value)
-	self.items[item]:decreaseValue(value)
+	self.elements[item]:decreaseValue(value)
 end
 
 function ItemHandler:applyItemFactor(item,factor)
-	self.items[item]:applyFactor(factor)
+	self.elements[item]:applyFactor(factor)
 end
-
-function ItemHandler:getEvent(event)
-	return self.cookieClicker:getEventHandler():getEvent(event)
-end
-
 function ItemHandler:getUpgrade(upgrade)
 	return self.cookieClicker:getUpgradeHandler():getUpgrade(upgrade)
 end
 
 function ItemHandler:getReductionModifier()
-	return self:getEvent(Events.ChinaEvent):getModifier()
+	return self:getEvent(Events.china):getModifier()
 end
 
 function ItemHandler:getCookieModifier()
-	return self:getEvent(Events.ObamaEvent):getModifier()*self:getUpgrade(Upgrades.cookie):getModifier()
+	return self:getEvent(Events.obama):getModifier()*self:getUpgrade(Upgrades.cookie):getModifier()
 end
 
 function ItemHandler:getBackerModifier()
-	return self:getEvent(Events.ObamaEvent):getModifier()*self:getUpgrade(Upgrades.baker):getModifier()
+	return self:getEvent(Events.obama):getModifier()*self:getUpgrade(Upgrades.baker):getModifier()
 end
 
 function ItemHandler:getMasterModifier()
-	return self:getEvent(Events.ObamaEvent):getModifier()*self:getUpgrade(Upgrades.master):getModifier()
+	return self:getEvent(Events.obama):getModifier()*self:getUpgrade(Upgrades.master):getModifier()
 end
 
 function ItemHandler:getMachineModifier()
-	return self:getEvent(Events.PutinEvent):getModifier()*self:getUpgrade(Upgrades.machine):getModifier()
+	return self:getEvent(Events.putin):getModifier()*self:getUpgrade(Upgrades.machine):getModifier()
 end
 
 function ItemHandler:getWorkerModifier()
-	return self:getEvent(Events.ObamaEvent):getModifier()*self:getUpgrade(Upgrades.worker):getModifier()
+	return self:getEvent(Events.obama):getModifier()*self:getUpgrade(Upgrades.worker):getModifier()
 end

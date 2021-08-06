@@ -3,6 +3,6 @@ BavariaEvent = Class(Event)
 BavariaEvent.text = "Knappers ersetzt Bratwurst in Bayern!"
 
 function BavariaEvent:handleEvent()
-	local modifier = math.random(1,2)*0.25
-	self.itemHandler:applyItemFactor(Items.cookie,modifier)
+	self.modifier = 1-math.random(1,2)*0.05
+	Event.handleEvent(self)
 end

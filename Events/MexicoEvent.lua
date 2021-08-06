@@ -10,4 +10,5 @@ function MexicoEvent:handleEvent()
 	if masterValue >= self.threshold then 
 		self.itemHandler:setItemValue(Items.master,math.ceil(masterValue*self.modifier))
 	end
+	Event.handleEvent(self)
 end

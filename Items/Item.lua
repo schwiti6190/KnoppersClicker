@@ -32,16 +32,7 @@ function Item:getValue()
 end
 
 function Item:getText()
-	local text = ""
-	if self.value / 1000000 >= 1 then 
-		text = string.format("%dM",math.floor(self.value/1000000))
-	elseif self.value / 1000 >=1 then 
-		text = string.format("%dk",math.floor(self.value/1000))
-	else 
-		text = math.floor(self.value)
-	end
-
-	return text
+	return GuiUtils.getFormattedMoneyText(self.value)
 end
 
 function Item:setValue(value)
@@ -73,16 +64,24 @@ function Item:add()
 	local cookieValue = self.itemHandler:getItemValue(Items.cookie)
 	local price = self:getPrice()
 	if cookieValue>=price then 
-		self:increaseValue(self:getClickAmount())
+		self:increaseValue(self:getClickAmount()*self:getBuyAmount())
 		self.itemHandler:decreaseItemValue(Items.cookie,price)
 		return true
 	end
 end
 
 function Item:getPrice()
-	return (self.defaultPrice + self.priceModifier * self.value) * self.itemHandler:getReductionModifier()
+	return (self.defaultPrice + self.priceModifier * self.value) * self.itemHandler:getReductionModifier() *self:getBuyAmount()
 end
+
+function Item:getPriceText()
+	return GuiUtils.getFormattedMoneyText(self:getPrice())
+end		
 
 function Item:getClickAmount()
 	return 1
+end
+
+function Item:getBuyAmount()
+	return self.itemHandler:getBuyAmount()
 end

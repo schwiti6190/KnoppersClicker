@@ -2,4 +2,4 @@
 ---@class MachineUpgrade :Upgrade
 MachineUpgrade = Class(Upgrade)
 MachineUpgrade.basePrice = 20000
-MachineUpgrade.priceModifier = 3.1
+MachineUpgrade.priceModifier = 60

@@ -16,17 +16,6 @@ GuiClickerScreen.data = {
 				onClickCall = "onClick"
 			}
 		},
-		price = {
-			class = GuiTextElement,
-			x = 18,
-			y = 2,
-			label = "Price: ",
-			callbacks = {
-				disabledCall = "isDisabled",
-				visibleCall = "isVisible",
-				textCall = "getPrice"
-			}
-		}
 	},
 	baker = {
 		base = {
@@ -49,7 +38,7 @@ GuiClickerScreen.data = {
 			callbacks = {
 				disabledCall = "isDisabled",
 				visibleCall = "isVisible",
-				textCall = "getPrice"
+				textCall = "getPriceText"
 			}
 		}
 	},
@@ -74,7 +63,7 @@ GuiClickerScreen.data = {
 			callbacks = {
 				disabledCall = "isDisabled",
 				visibleCall = "isVisible",
-				textCall = "getPrice"
+				textCall = "getPriceText"
 			}
 		}
 	},
@@ -99,7 +88,7 @@ GuiClickerScreen.data = {
 			callbacks = {
 				disabledCall = "isDisabled",
 				visibleCall = "isVisible",
-				textCall = "getPrice"
+				textCall = "getPriceText"
 			}
 		}
 	},
@@ -124,7 +113,7 @@ GuiClickerScreen.data = {
 			callbacks = {
 				disabledCall = "isDisabled",
 				visibleCall = "isVisible",
-				textCall = "getPrice"
+				textCall = "getPriceText"
 			}
 		}
 	},
@@ -133,7 +122,7 @@ GuiClickerScreen.data = {
 			class = GuiButtonElement,
 			x = 1,
 			y = 10,
-			label = "back: ",
+			label = "back",
 			callbacks = {
 				onClickCall = "onClickBack"
 			}
@@ -146,9 +135,31 @@ GuiClickerScreen.data = {
 			y = 1,
 			label = "Event: ",
 			callbacks = {
-				disabledCall = "isDisabled",
 				visibleCall = "isVisible",
 				textCall = "getText",
+			}
+		}
+	},
+	cps = {
+		base = {
+			class = GuiTextElement,
+			x = 18,
+			y = 2,
+			label = "Cps: ",
+			callbacks = {
+				textCall = "getCps"
+			}
+		}
+	},
+	buyAmount = {
+		base = {
+			class = GuiButtonElement,
+			x = 18,
+			y = 10,
+			label = "Buy amount:",
+			callbacks = {
+				onClickCall = "changeBuyAmount",
+				textCall = "getBuyAmount"
 			}
 		}
 	}

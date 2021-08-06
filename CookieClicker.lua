@@ -1,6 +1,7 @@
 require("Basics/Class")
 require("Gui/Renderer")
 require("Handlers/Handler")
+require("Handlers/InputHandler")
 require("Handlers/ItemHandler")
 require("Handlers/UpgradeHandler")
 require("Handlers/EventHandler")
@@ -20,8 +21,9 @@ end
 function CookieClicker:setup()
 	self.renderer = Renderer(self)
 	self.itemHandler = ItemHandler(self,self.renderer)
-	self.upgradeHandler = UpgradeHandler(self.itemHandler,self.renderer)
-	self.eventHandler = EventHandler(self.itemHandler,self.renderer)
+	self.upgradeHandler = UpgradeHandler(self,self.renderer,self.itemHandler)
+	self.eventHandler = EventHandler(self,self.renderer,self.itemHandler)
+	self.inputHandler = InputHandler(self,self.renderer,self.eventHandler)
 	
 end
 
@@ -37,11 +39,21 @@ function CookieClicker:getUpgradeHandler()
 	return self.upgradeHandler
 end
 
+function CookieClicker:getInputHandler()
+	return self.inputHandler
+end
+
 function CookieClicker:update()
+	if not peripheral.find("monitor") then 
+		print("Monitor is missing!")
+		return 
+	end
+
 	self.upgradeHandler:update()	
 	self.itemHandler:update()
 	self.renderer:draw()
 	self.eventHandler:update()
+	self.inputHandler:update()
 end
 
 CookieClicker()
