@@ -54,3 +54,11 @@ end
 function Upgrade:getBuyAmount()
 	return self.upgradeHandler:getBuyAmount()
 end
+
+function Upgrade:getValue()
+	return self.value
+end
+
+function Upgrade:setValue(value)
+	self.value = value
+end

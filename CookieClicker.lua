@@ -10,8 +10,11 @@ require("Handlers/EventHandler")
 ---@class CookieClicker
 CookieClicker = Class()
 CookieClicker.debug = true
+CookieClicker.autoSaveInterval = 60*2
+CookieClicker.saveFile = "KnoppersClicker/saveFile.txt"
 
 function CookieClicker:init()
+	self.autoSaveTimer = nil
 	self:setup()
 	while true do
 		self:update()
@@ -24,7 +27,30 @@ function CookieClicker:setup()
 	self.upgradeHandler = UpgradeHandler(self,self.renderer,self.itemHandler)
 	self.eventHandler = EventHandler(self,self.renderer,self.itemHandler)
 	self.inputHandler = InputHandler(self,self.renderer,self.eventHandler)
-	
+	self:onLoad()
+end
+
+function CookieClicker:onLoad()
+	local file = fs.open(self.saveFile,"r")
+	if not file then print("file error") return end
+	local data = textutils.unserialize(file.readAll())
+	file.close()
+	if not data then print("data error")  return end
+	self.itemHandler:onLoad(data.items)
+	self.upgradeHandler:onLoad(data.upgrades)
+end
+
+function CookieClicker:onSave()
+	local file = fs.open(self.saveFile,"w")
+	if not file then print("file error") return end
+	local saveData = {
+		items = {},
+		upgrades = {}
+	}
+	self.itemHandler:onSave(saveData.items)
+	self.upgradeHandler:onSave(saveData.upgrades)
+	file.write(textutils.serialize(saveData))
+	file.close()
 end
 
 function CookieClicker:getRenderer()
@@ -48,12 +74,24 @@ function CookieClicker:update()
 		print("Monitor is missing!")
 		return 
 	end
+	if not self.autoSaveTimer then 
+		self.autoSaveTimer = os.startTimer(self.autoSaveInterval)
+	end	
 
 	self.upgradeHandler:update()	
 	self.itemHandler:update()
 	self.renderer:draw()
 	self.eventHandler:update()
 	self.inputHandler:update()
+end
+
+function CookieClicker:handleAutoSave(timerID)
+	if timerID == self.autoSaveTimer then 
+		print("Autosave")
+		self.autoSaveTimer = nil
+		self:onSave()
+	end
+
 end
 
 CookieClicker()

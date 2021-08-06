@@ -27,6 +27,7 @@ end
 
 function InputHandler:handleTimer(timerID)
 	self.eventHandler:handleEvent(timerID)
+	self.cookieClicker:handleAutoSave(timerID)
 end
 
 function InputHandler:onMouseClick(monitorID,x,y)

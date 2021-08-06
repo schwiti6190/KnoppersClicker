@@ -51,3 +51,19 @@ function Handler:changeBuyAmount()
 	end
 	self.buyAmountIx = ix
 end
+
+function Handler:onLoad(data)
+	for elementName,value in pairs(data) do 
+		local element = self.elements[elementName]
+		if element then 
+			element:setValue(value)
+		end
+	end
+	
+end
+
+function Handler:onSave(elementSaveValues)
+	for elementName,element in pairs(self.elements) do 
+		elementSaveValues[elementName] = element:getValue()
+	end
+end
