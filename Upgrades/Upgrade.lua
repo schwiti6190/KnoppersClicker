@@ -23,7 +23,7 @@ function Upgrade:getModifier()
 end
 
 function Upgrade:getPrice()
-	return (self.basePrice + self.priceModifier * self.value)*self.upgradeHandler:getReductionModifier() * self:getBuyAmount()
+	return (self.basePrice + 2^(self.priceModifier * self.value))*self.upgradeHandler:getReductionModifier() * self:getBuyAmount()
 end
 
 function Upgrade:getPriceText()

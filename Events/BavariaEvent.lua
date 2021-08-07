@@ -1,3 +1,4 @@
+---Upgrades 5/10 % cheaper.
 ---@class BavariaEvent : Event
 BavariaEvent = Class(Event)
 BavariaEvent.text = "Knappers ersetzt Bratwurst in Bayern!"

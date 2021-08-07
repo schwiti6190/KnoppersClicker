@@ -16,6 +16,12 @@ Screens = {
 	clicker = "clicker"
 }
 
+GuiElements = {
+	["GuiElement"] = GuiElement,
+	["GuiTextElement"] = GuiTextElement,
+	["GuiButtonElement"] = GuiButtonElement,
+}
+
 function Renderer:init(cookieClicker)
 	self.cookieClicker = cookieClicker
 	self.monitor = peripheral.find("monitor")
@@ -47,9 +53,12 @@ function Renderer:getClickerScreen()
 	return self.screens.clicker
 end
 
+function Renderer:clear()
+	self.monitor.clear()
+end
 
 function Renderer:draw()
-	self.monitor.clear()
+	self:clear()
 	for _,element in pairs(self.currentScreen:getElements()) do 
 		element:draw()
 	end

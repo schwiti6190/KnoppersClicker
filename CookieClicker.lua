@@ -14,9 +14,10 @@ CookieClicker.autoSaveInterval = 60*2
 CookieClicker.saveFile = "KnoppersClicker/saveFile.txt"
 
 function CookieClicker:init()
+	self.gameIsRunning = true
 	self.autoSaveTimer = nil
 	self:setup()
-	while true do
+	while self.gameIsRunning do
 		self:update()
 	end
 end
@@ -35,7 +36,8 @@ function CookieClicker:onLoad()
 	if not file then print("file error") return end
 	local data = textutils.unserialize(file.readAll())
 	file.close()
-	if not data then print("data error")  return end
+	if not data then print("Data error")  return end
+	print("Game loaded successfully")
 	self.itemHandler:onLoad(data.items)
 	self.upgradeHandler:onLoad(data.upgrades)
 end
@@ -47,6 +49,7 @@ function CookieClicker:onSave()
 		items = {},
 		upgrades = {}
 	}
+	print("Game saved successfully")
 	self.itemHandler:onSave(saveData.items)
 	self.upgradeHandler:onSave(saveData.upgrades)
 	file.write(textutils.serialize(saveData))
@@ -72,6 +75,7 @@ end
 function CookieClicker:update()
 	if not peripheral.find("monitor") then 
 		print("Monitor is missing!")
+		self:stop()
 		return 
 	end
 	if not self.autoSaveTimer then 
@@ -92,6 +96,12 @@ function CookieClicker:handleAutoSave(timerID)
 		self:onSave()
 	end
 
+end
+
+function CookieClicker:stop()
+	self.renderer:clear()
+	self:onSave()
+	self.gameIsRunning = false
 end
 
 CookieClicker()

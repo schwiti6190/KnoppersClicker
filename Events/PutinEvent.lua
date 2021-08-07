@@ -1,4 +1,4 @@
-
+---Machine production increased by 50/100%
 ---@class PutinEvent : Event
 PutinEvent = Class(Event)
 PutinEvent.text = "Putin reitet Knappers zum Sieg"

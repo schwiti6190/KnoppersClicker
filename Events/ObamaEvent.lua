@@ -1,4 +1,5 @@
 
+---Cookie modifier 25/50 % additional.
 ---@class ObamaEvent : Event
 ObamaEvent = Class(Event)
 ObamaEvent.text = "Yes we can!"

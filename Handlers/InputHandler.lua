@@ -17,7 +17,7 @@ function InputHandler:update()
 			self:onMouseClick(id,x,y)
 		elseif event == "key" and id == keys.q then
 			print("Q was pressed!")
-			os.exit()
+			self.cookieClicker:stop()
 		elseif event == "timer" and id ~= inputTimer then 
 			self:handleTimer(id)
 		end

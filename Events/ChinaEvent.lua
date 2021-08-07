@@ -1,4 +1,4 @@
-
+---Everything 25/50% cheaper.
 ---@class ChinaEvent : Event
 ChinaEvent = Class(Event)
 ChinaEvent.text = "Made in China"

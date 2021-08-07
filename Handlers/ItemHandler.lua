@@ -31,7 +31,8 @@ ItemHandler.elementsData = {
 function ItemHandler:init(cookieClicker,renderer)
 	local screen = renderer:getClickerScreen()
 	self:addElements(screen,self)
-	screen:setCallbackClassToElements({cps = self,buyAmount = self})
+	screen:setCallbackClassToElements({cps = self,buyAmount = self,clickAmount = self.elements.cookie})
+	
 	Handler.init(self,cookieClicker,renderer)
 end
 

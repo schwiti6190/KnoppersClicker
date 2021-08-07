@@ -1,4 +1,4 @@
-
+---5% loss of master from 10 master onwards.
 ---@class MexicoEvent : Event
 MexicoEvent = Class(Event)
 MexicoEvent.text = "Die klauen unsere Jobs."

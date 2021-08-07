@@ -1,4 +1,4 @@
-
+---Instant loss of 5%/7,5%/10% Cookies.
 ---@class GreeceEvent : Event
 GreeceEvent = Class(Event)
 GreeceEvent.text = "Du Pleitegeier"

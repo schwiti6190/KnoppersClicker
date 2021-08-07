@@ -1,15 +1,16 @@
 
 ---@class GuiScreen 
 GuiScreen = Class()
+GuiScreen.basePath = "KnoppersClicker/Gui/Screens/"
 
 function GuiScreen:init(renderer)
 	self.renderer = renderer
-	self.elements = self:addGuiElements(self.data)
+	self.elements = self:addGuiElements(self.basePath..self.filePath)
 end
 
-function GuiScreen:addGuiElements(data)
-	if data then 
-		return GuiUtils.setButtonsFromTable(data,self.renderer,self)
+function GuiScreen:addGuiElements(filePath)
+	if filePath then 
+		return GuiUtils.setButtonsFromTable(filePath,self.renderer,self)
 	else 
 		return {}
 	end
