@@ -1,150 +1,58 @@
 {
 	"baker":{
+		"prefab" : "itemWithPrice",
 		"base":{
 			"y":3,
-			"x":1,
-			"label":"Baker: ",
-			"callbacks":{
-				"textCall":"getText",
-				"onClickCall":"onClick",
-				"disabledCall":"isDisabled",
-				"visibleCall":"isVisible"
-			},
-			"class":"GuiButtonElement"
+			"label":"Baker: "
 		},
 		"price":{
-			"y":3,
-			"x":18,
-			"label":"Price: ",
-			"callbacks":{
-				"textCall":"getPriceText",
-				"disabledCall":"isDisabled",
-				"visibleCall":"isVisible"
-			},
-			"class":"GuiTextElement"
+			"y":3
 		}
 	},
 	"machine":{
+		"prefab" : "itemWithPrice",
 		"base":{
 			"y":5,
-			"x":1,
-			"label":"Machine: ",
-			"callbacks":{
-				"textCall":"getText",
-				"onClickCall":"onClick",
-				"disabledCall":"isDisabled",
-				"visibleCall":"isVisible"
-			},
-			"class":"GuiButtonElement"
+			"label":"Machine: "
 		},
 		"price":{
-			"y":5,
-			"x":18,
-			"label":"Price: ",
-			"callbacks":{
-				"textCall":"getPriceText",
-				"disabledCall":"isDisabled",
-				"visibleCall":"isVisible"
-			},
-			"class":"GuiTextElement"
+			"y":5
 		}
 	},
 	"cookie":{
+		"prefab" : "itemWithPrice",
 		"base":{
 			"y":2,
-			"x":1,
-			"label":"Knoppers: ",
-			"callbacks":{
-				"textCall":"getText",
-				"onClickCall":"onClick",
-				"disabledCall":"isDisabled",
-				"visibleCall":"isVisible"
-			},
-			"class":"GuiButtonElement"
+			"label":"Knoppers: "
 		},
 		"price":{
-			"y":2,
-			"x":18,
-			"label":"Price: ",
-			"callbacks":{
-				"textCall":"getPriceText",
-				"disabledCall":"isDisabled",
-				"visibleCall":"isVisible"
-			},
-			"class":"GuiTextElement"
+			"y":2
 		}
 	},
 	"worker":{
+		"prefab" : "itemWithPrice",
 		"base":{
 			"y":6,
-			"x":1,
-			"label":"Worker: ",
-			"callbacks":{
-				"textCall":"getText",
-				"onClickCall":"onClick",
-				"disabledCall":"isDisabled",
-				"visibleCall":"isVisible"
-			},
-			"class":"GuiButtonElement"
+			"label":"Worker: "
 		},
 		"price":{
-			"y":6,
-			"x":18,
-			"label":"Price: ",
-			"callbacks":{
-				"textCall":"getPriceText",
-				"disabledCall":"isDisabled",
-				"visibleCall":"isVisible"
-			},
-			"class":"GuiTextElement"
+			"y":6
 		}
 	},
 	"master":{
+		"prefab" : "itemWithPrice",
 		"base":{
 			"y":4,
-			"x":1,
-			"label":"Master: ",
-			"callbacks":{
-				"textCall":"getText",
-				"onClickCall":"onClick",
-				"disabledCall":"isDisabled",
-				"visibleCall":"isVisible"
-			},
-			"class":"GuiButtonElement"
+			"label":"Master: "
 		},
 		"price":{
-			"y":4,
-			"x":18,
-			"label":"Price: ",
-			"callbacks":{
-				"textCall":"getPriceText",
-				"disabledCall":"isDisabled",
-				"visibleCall":"isVisible"
-			},
-			"class":"GuiTextElement"
+			"y":4
 		}
 	},
 	"buyAmount":{
-		"base":{
-			"y":10,
-			"x":18,
-			"label":"Buy amount:",
-			"callbacks":{
-				"onClickCall":"changeBuyAmount",
-				"textCall":"getBuyAmount"
-			},
-			"class":"GuiButtonElement"
-		}
+		"prefab" : "buyAmount"
 	},
 	"back":{
-		"base":{
-			"y":10,
-			"x":1,
-			"label":"back",
-			"callbacks":{
-				"onClickCall":"onClickBack"
-			},
-		"class":"GuiButtonElement"
-		}
+		"prefab" : "back"
 	}
 }

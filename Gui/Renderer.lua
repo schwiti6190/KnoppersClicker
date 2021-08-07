@@ -9,6 +9,7 @@ require("Gui/Screens/GuiUpgradeScreen")
 
 ---@class Renderer
 Renderer = Class()
+Renderer.prefabsFilePath = "KnoppersClicker/Gui/GuiPrefabs.json"
 
 Screens = {
 	menu = "menu",
@@ -25,6 +26,7 @@ GuiElements = {
 function Renderer:init(cookieClicker)
 	self.cookieClicker = cookieClicker
 	self.monitor = peripheral.find("monitor")
+	self.prefabs = GuiUtils.getDataFromJsonFile(self.prefabsFilePath)
 	self:setupScreens()
 end
 
@@ -51,6 +53,10 @@ end
 
 function Renderer:getClickerScreen()
 	return self.screens.clicker
+end
+
+function Renderer:getPrefabs()
+	return self.prefabs
 end
 
 function Renderer:clear()

@@ -1,0 +1,60 @@
+{
+	"itemWithPrice":{
+		"base":{
+			"x" : 1,
+			"callbacks":{
+				"textCall":"getText",
+				"onClickCall":"onClick",
+				"disabledCall":"isDisabled",
+				"visibleCall":"isVisible"
+			},
+			"class":"GuiButtonElement"
+		},
+		"price":{
+			"x" : 18,
+			"label":"Price: ",
+			"callbacks":{
+				"textCall":"getPriceText",
+				"disabledCall":"isDisabled",
+				"visibleCall":"isVisible"
+			},
+			"class":"GuiTextElement"
+		}
+	},
+	"item":{
+		"base":{
+			"x" : 1,
+			"callbacks":{
+				"textCall":"getText",
+				"onClickCall":"onClick",
+				"disabledCall":"isDisabled",
+				"visibleCall":"isVisible"
+			},
+			"class":"GuiButtonElement"
+		}
+	},
+	"back" : {
+		"base":{
+			"y":10,
+			"x":1,
+			"label":"back",
+			"callbacks":{
+				"onClickCall":"onClickBack"
+			},
+		"class":"GuiButtonElement"
+		}
+	},
+	"buyAmount":{
+		"base":{
+			"y":10,
+			"x":18,
+			"label":"Buy amount:",
+			"callbacks":{
+				"onClickCall":"changeBuyAmount",
+				"textCall":"getBuyAmount"
+			},
+			"class":"GuiButtonElement"
+		}
+	}
+
+}

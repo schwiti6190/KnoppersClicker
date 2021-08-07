@@ -4,19 +4,34 @@ GuiUtils = {}
 
 function GuiUtils.setButtonsFromTable(filePath,renderer,callbackClass)
 	local elements = {}
-	print(filePath)
+	local prefabs = renderer:getPrefabs()
 	local data = GuiUtils.getDataFromJsonFile(filePath)
 	for elementName,Data in pairs(data) do
+		local prefab = Data.prefab and prefabs[Data.prefab]
+		if prefab then 
+			GuiUtils.enrichGuiElementWithPrefab(Data,prefab)
+		end
 		for _,elementData in pairs(Data) do
-			local className = elementData.class
-			local class = GuiElements[className]
-			local element = class(renderer,elementData.x,elementData.y,elementData.label,"")
-			element:setCallbacks(elementData.callbacks,callbackClass)
-			table.insert(elements,element)
-			element:setClassName(elementName) 
+			if type(elementData) == "table" then 
+				local className = elementData.class
+				local class = className and GuiElements[className]
+				local element = class(renderer,elementData.x,elementData.y,elementData.label,"")
+				element:setCallbacks(elementData.callbacks,callbackClass)
+				table.insert(elements,element)
+				element:setClassName(elementName) 
+			end
 		end
 	end
 	return elements
+end
+
+function GuiUtils.enrichGuiElementWithPrefab(element,prefab)
+	if type(element) == "table" then 
+		for i,subPrefab in pairs(prefab) do 
+			if element[i] == nil then element[i] = subPrefab end
+			GuiUtils.enrichGuiElementWithPrefab(element[i],subPrefab)
+		end
+	end
 end
 
 GuiUtils.moneyEndings = {
@@ -54,7 +69,6 @@ function GuiUtils.getDataFromJsonFile(filePath)
 		local jsonData = file.readAll()
 		if jsonData then 
 			data = textutils.unserializeJSON(jsonData)
-			print(data) 
 		else 
 			print("data error")
 		end
@@ -78,4 +92,14 @@ function GuiUtils.setDataToJson(filePath,data)
 	else 
 		print("file error")
 	end
+end
+
+function GuiUtils.printTable(data)
+	for ai,aj in pairs(data) do 
+		print(string.format("name: %s, element: %s",ai,aj))
+	end
+end
+
+function GuiUtils.printTableValue(index,value)
+	print(string.format("name: %s, element: %s",index,value))
 end
